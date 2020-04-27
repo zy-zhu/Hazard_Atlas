@@ -40,3 +40,14 @@
     background: rgb(4, 4, 58);
     transition: all 2000ms ease 0s;
 }
+
+.canvasclass   { 
+position: absolute;
+top: 20px;
+min-width: 270px;
+left: 10px;
+border-radius: 3px;
+font: 15px;
+font-family: Roboto;
+padding: 10px;
+opacity: 0.5;}
