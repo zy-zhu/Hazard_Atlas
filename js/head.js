@@ -23,7 +23,7 @@ $(document).ready(function()
       {
         $(this).click(function()
         {
-          displayData(i+1);
+          displayData(i+1);ƒ
           $('.sport').removeClass('active');
           $(this).addClass('active');
         });
@@ -44,7 +44,7 @@ $(document).ready(function()
     }
 
     $.ajax({
-      url: 'data.json',
+      url: 'https://raw.githubusercontent.com/zy-zhu/Hazard_Atlas/master/data.json',
       dataType: 'json',
       data: {},
       cache: false,

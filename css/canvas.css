@@ -1,0 +1,33 @@
+.nav_00 {
+    position: fixed;
+    top: 5px;
+    min-width: 270px;
+    left: 10px;
+    border-radius: 3px;
+    font: 30px serif;
+    padding: 10px;
+  }
+
+  .nav_01 {
+    position: absolute;
+    top: 10px;
+    min-width: 270px;
+    left: 90%;
+    border-radius: 3px;
+    font: 15px serif;
+    padding: 10px;
+  }
+
+  #d3_canvas {
+    position: absolute;
+    top: 30px;
+    min-width: 270px;
+    left: 20px;
+    border-radius: 3px;
+    font: 15px serif;
+    padding: 10px;
+    opacity: 0.5;
+  }
+
+
+

@@ -6,6 +6,7 @@
 
   <!--css file-->
   <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="stylesheet" type="text/css" href="css/canvas.css">
     
 <!--Three.js +JQUERY-->
   <script type="text/javascript" src="third-party/Three/ThreeWebGL.js"></script>
@@ -13,12 +14,31 @@
   <script type="text/javascript" src="third-party/Three/RequestAnimationFrame.js"></script>
   <script type="text/javascript" src="third-party/Three/Detector.js"></script>
   <script type="text/javascript" src="third-party/Tween.js"></script>
-  <script type="text/javascript" src="js/globe.js"></script>
-  <script type="text/javascript" src="js/jquery.js"></script>
+  <script type="text/javascript" src="globe.js"></script>
+  <script type="text/javascript" src="jquery.js"></script>
   <script type="text/javascript" src="js/head.js"></script>
-</head>
+  <script type="text/javascript" src="https://github.com/zy-zhu/Hazard_Atlas/blob/master/data.json"></script>
+
+  
+  
+
+<!--D3.js-->
+
+
+
+
+
 <body>
 
+  <div id='fix_title'>
+<svg>
+
+  </svg>
+
+
+
+
+  </div>
   <div id="container"></div>
 
   <div id="info">
@@ -34,9 +54,37 @@ class="bull">&bull;</span>
     <div id="sAll" class="sport">&nbsp;</div>
   </div>
 
+
+  <!--
   <div id="title">
     Hazard Atlas
   </div>
+  -->
+
+  <div class="nav_00" id="nav-show">
+
+    <a href="">Hazard Atlas
+      </a>
+
+      <nav class="nav_01">
+        <a href="/landing">Home</a>
+        <a href="/Routine">Rountine</a>
+        <a href="/About">About</a>
+         </nav>
+  </div>
+
+  <div id="d3_canvas">
+    <p class="d3_00"> Global Natural Disaster Trend </p>
+
+
+<div class="d3_01">
+    <svg width="100%" height="100%">
+
+      </svg>
+</div>
+    
+
+    </div>
 
 
 <!--
@@ -60,7 +108,11 @@ class="bull">&bull;</span>
     </p>
   </div>
 
+
+  <!--FORK ME
   <a href="https://github.com/zy-zhu/Hazard_Atlas" target="_blank"><img style="position: absolute; top: 0; right: 0; border: 0; z-index: 99;" src="imgs/forkme.png" alt="Fork me on GitHub"></a>
+-->
+
 
 </body>
 </html>
