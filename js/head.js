@@ -44,7 +44,7 @@ $(document).ready(function()
     }
 
     $.ajax({
-      url: 'https://raw.githubusercontent.com/zy-zhu/Hazard_Atlas/master/data.json',
+      url: 'data.json',
       dataType: 'json',
       data: {},
       cache: false,
