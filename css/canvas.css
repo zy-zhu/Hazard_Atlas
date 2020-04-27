@@ -1,16 +1,16 @@
 .nav_00 {
     position: fixed;
-    top: 5px;
+    top: 2px;
     min-width: 270px;
     left: 10px;
     border-radius: 3px;
-    font: 30px serif;
+    font: 25px futura;
     padding: 10px;
   }
 
   .nav_01 {
     position: absolute;
-    top: 10px;
+    top: 5px;
     min-width: 270px;
     left: 90%;
     border-radius: 3px;
@@ -20,7 +20,7 @@
 
   #d3_canvas {
     position: absolute;
-    top: 30px;
+    top: 20px;
     min-width: 270px;
     left: 20px;
     border-radius: 3px;
@@ -31,3 +31,11 @@
 
 
 
+  .hqgePM {
+    height: 50px;
+    position: relative;
+    box-shadow: rgba(0, 0, 0, 0.97) 0px 11px 40px -11px inset;
+    z-index: 2;
+    background: rgb(4, 4, 58);
+    transition: all 2000ms ease 0s;
+}
