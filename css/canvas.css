@@ -22,9 +22,10 @@
     position: absolute;
     top: 20px;
     min-width: 270px;
-    left: 20px;
+    left: 10px;
     border-radius: 3px;
-    font: 15px serif;
+    font: 15px;
+    font-family: Roboto;
     padding: 10px;
     opacity: 0.5;
   }

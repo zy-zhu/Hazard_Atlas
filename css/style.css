@@ -131,3 +131,17 @@ html {
     z-index: 5;
     transition: all 400ms ease 0s;
 }
+
+.hsjmJL{
+    font-family: Roboto;
+    font-size: 10px;
+    font-weight: 300;
+    color: rgb(167, 164, 164);
+    margin-top: 15px;
+    margin-left: 5%;
+    display: inherit;
+    cursor: pointer;
+    z-index: 5;
+    transition: all 400ms ease 0s;
+}
+
