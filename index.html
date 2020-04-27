@@ -19,8 +19,6 @@
   <script type="text/javascript" src="head.js"></script>
   
 
-  
-  
 
 <!--D3.js-->
 <script src="https://d3js.org/d3.v3.js"></script>
@@ -30,18 +28,29 @@
 
 <body>
 
-  <div id='fix_title'>
+  <div id="root">
+    <div class="nav_00" id="nav-show">
+      <a href="">Hazard Atlas
+        </a>
+  
+        <nav class="nav_01">
+          <a href="/landing">Home</a>
+          <a href="/Routine">Rountine</a>
+          <a href="/About">About</a>
+           </nav>
 
-
+    </div>
+  
+    <div id="d3_canvas">
+      <p class="d3_00"> Global Natural Disaster Trend </p>
+      </div>
+    
   </div>
 
 
   <div id="container"></div>
 
-  <div id="info">
-    Created by Zoey Zhu, Litao Yan, Kaihong Gao <span class="bull">&bull;</span> Based on <strong><a href="http://www.chromeexperiments.com/globe">WebGL Globe</a></strong> <span
-class="bull">&bull;</span> 
-  </div>
+<div>
 
   <div id="currentInfo">
     <div id="sRun" class="sport">Earthquake</div>
@@ -52,36 +61,20 @@ class="bull">&bull;</span>
   </div>
 
 
+  <div id="info">
+    Created by Zoey Zhu, Litao Yan, Kaihong Gao <span class="bull">&bull;</span> Based on <strong><a href="http://www.chromeexperiments.com/globe">WebGL Globe</a></strong> <span
+class="bull">&bull;</span> 
+  </div>
+
+
+
+</div>
+
   <!--
   <div id="title">
     Hazard Atlas
   </div>
   -->
-
-  <div class="nav_00" id="nav-show">
-
-    <a href="">Hazard Atlas
-      </a>
-
-      <nav class="nav_01">
-        <a href="/landing">Home</a>
-        <a href="/Routine">Rountine</a>
-        <a href="/About">About</a>
-         </nav>
-  </div>
-
-  <div id="d3_canvas">
-    <p class="d3_00"> Global Natural Disaster Trend </p>
-
-
-<div class="d3_01">
-    <svg width="100%" height="100%">
-
-      </svg>
-</div>
-    
-
-    </div>
 
 
 <!--
