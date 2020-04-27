@@ -1,36 +1,3 @@
-<!DOCTYPE html>
-
-<head>
-<meta charset="utf-8">
-<style>
-
-body {
-  font: 12px Helvetica;
-}
-
-.axis line {
-  fill: none;
-  stroke: #000;
-  shape-rendering: crispEdges;
-}
-
-.x.axis path {
-  display: none;
-}
-
-.line {
-  fill: none;
-  stroke: steelblue;
-  stroke-width: 2px;
-}
-
-</style>
-<script src="https://d3js.org/d3.v3.js"></script>
-</head>
-<body>
-
-<script>
-
 var margin = {top: 20, right: 50, bottom: 30, left: 50},
     width = 630 - margin.left - margin.right,
     height = 400 - margin.top - margin.bottom;
@@ -61,7 +28,7 @@ var svg = d3.select("body").append("svg")
   .append("g")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-d3.csv("./volcano_eruption_info_details.csv", function(error, data) {
+d3.csv("volcano.csv", function(error, data) {
 
   var yearData = [];
 
@@ -149,7 +116,7 @@ var line = d3.svg.line()
 
   function transition(path) {
     path.transition()
-        .duration(12000)
+        .duration(5000)
         .attrTween("stroke-dasharray", tweenDash);
   }
   function tweenDash() {
@@ -159,8 +126,3 @@ var line = d3.svg.line()
   }
 
 });
-
-</script>
-
-</body>
-</html>
