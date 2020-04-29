@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<style>
+
+body {
+  font: 12px Helvetica;
+}
+
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.line {
+  fill: none;
+  stroke: steelblue;
+  stroke-width: 2px;
+}
+
+div.tooltip {	
+    position: absolute;			
+    text-align: center;			
+    width: 100px;					
+    height: 30px;					
+    padding: 2px;				
+    font: 12px sans-serif;		
+    background: lightsteelblue;	
+    border: 0px;		
+    border-radius: 8px;			
+    pointer-events: none;			
+}
+
+</style>
+<body>
+<script src="https://d3js.org/d3.v3.js"></script>
+<script>
+
+var margin = {top: 20, right: 50, bottom: 30, left: 50},
+    width = 630 - margin.left - margin.right,
+    height = 400 - margin.top - margin.bottom;
+
+var x = d3.scale.linear()
+    .range([0, width]);
+
+var y = d3.scale.linear()
+    .range([height, 0]);
+
+var xAxis = d3.svg.axis()
+    .scale(x)
+    .ticks(5)
+    .innerTickSize(15)
+    .outerTickSize(0)
+    .orient("bottom");
+
+var yAxis = d3.svg.axis()
+    .scale(y)
+    .ticks(5)
+    .innerTickSize(15)
+    .outerTickSize(0)
+    .orient("left");
+
+var svg = d3.select("body").append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .style("background-color", '#0A0C0E')
+  .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+
+d3.csv("./volcano_eruption_info_details.csv", function(error, data) {
+
+  var yearData = [];
+
+  // [{"year":1900, "value": 20}]
+
+  for (var i=0; i<data.length; i++) {
+    var flag = 0;
+    for (var j=0; j<yearData.length; j++) {
+      if (data[i]['Year']==yearData[j]['year']) {
+        yearData[j]['value'] += 1;
+        flag = 1;
+        break;
+      }
+    }
+    if (flag == 0) {
+      yearData.push({"year": data[i]['Year'], "value": 1});
+    } 
+  }
+  console.log(yearData);
+  var minValue = 0;
+  var maxValue = 0;
+
+  for (var i=0; i<yearData.length; i++) {
+    if (yearData[i]['value'] < minValue) {
+      minValue = yearData[i]['value'];
+    }
+    if (yearData[i]['value'] > maxValue) {
+      maxValue = yearData[i]['value'];
+    }
+  }
+
+  x.domain(d3.extent(yearData, function(d) { return d.year; }));
+
+  y.domain([minValue,maxValue]);
+
+  svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0," + height + ")")
+      .call(xAxis)
+      .style("fill", "#899AAE");;
+
+  svg.append("g")
+      .attr("class", "y axis")
+      .call(yAxis)
+      .style("fill", "#899AAE");;
+
+  svg.append("line")
+        .attr(
+        {
+            "class":"horizontalGrid",
+            "x1" : 0,
+            "x2" : width,
+            "y1" : y(0),
+            "y2" : y(0),
+            "fill" : "none",
+            "shape-rendering" : "crispEdges",
+            "stroke" : "#899AAE",
+            "stroke-width" : "1px",
+            "stroke-dasharray": ("3, 3")
+        });
+
+  var volcano = svg.selectAll(".volcano")
+      .data(yearData)
+    .enter().append("g")
+      .attr("class", "volcano");
+
+  var line = d3.svg.line()
+    .x(function(d) { return x(d.year); })
+    .y(function(d,i) { return y(d.value); });
+
+  var path = svg.selectAll(".volcano").append("path")
+      .attr("class", "line")
+      .attr("d", line(yearData))
+      .style("stroke", "#FC3D27")
+      .style("stroke-width", "2")
+      .call(transition);
+      
+  var totalLength = path[0][0].getTotalLength();
+
+  d3.select(path[0][0])
+      .attr("stroke-dasharray", totalLength + " " + totalLength ) 
+      .attr("stroke-dashoffset", totalLength)
+      .transition()
+        .duration(5000)
+        .ease("linear")
+        .attr("stroke-dashoffset", 0); 
+
+  function transition(path) {
+    path.transition()
+        .duration(70000)
+        .attrTween("stroke-dasharray", tweenDash);
+  }
+  function tweenDash() {
+    var l = this.getTotalLength(),
+        i = d3.interpolateString("0," + l, l + "," + l);
+    return function (t) { return i(t); };
+  }
+
+  var div = d3.select("body").append("div")	
+    .attr("class", "tooltip")				
+    .style("opacity", 0);
+      
+  svg.selectAll(".dot")
+    .data(yearData)
+  .enter().append("circle") // Uses the enter().append() method
+    .attr("class", "dot") // Assign a class for styling
+    .attr("cx", function(d) { return x(d.year) })
+    .attr("cy", function(d) { return y(d.value) })
+    .attr("r", 3)
+    .style("stroke", "#FC3D27")
+    .on("mouseover", function(d) {		
+        div.transition()		
+            .duration(200)		
+            .style("opacity", .9);		
+        div	.html("Volcano times: "+d.value + "<br/>"  + "Year: " + d.year)	
+            .style("left", (d3.event.pageX) + "px")		
+            .style("top", (d3.event.pageY - 28) + "px");	
+        })					
+    .on("mouseout", function(d) {		
+        div.transition()		
+            .duration(500)		
+            .style("opacity", 0);	
+    });
+
+});
+
+</script>
